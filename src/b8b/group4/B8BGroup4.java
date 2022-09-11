@@ -19,6 +19,7 @@ public class B8BGroup4 {
         System.out.println("Hello , i'm salwa saleh :)");
         System.out.println("Hello, i am somayah :)");
         System.out.println("Hello, I am Serene Alkhallagi :) ");
+        System.out.println("Hello, I am Jumanah Faisal :) ");
     }
     
 }

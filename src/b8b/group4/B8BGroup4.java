@@ -17,6 +17,7 @@ public class B8BGroup4 {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello , i'm salwa saleh :)");
+        System.out.println("Hello, i am somayah :)");
     }
     
 }

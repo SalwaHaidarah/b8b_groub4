@@ -38,7 +38,9 @@ public class PleaseCookies {
 
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
-        Administrator admin = new Administrator("Kh_99", "1234", "Khadegah");
+        
+        
+        Administrator admin = Administrator.getInstace(); //Singlton
 
         printHead(); //mine to choose if you are 1/admin or 2/customer
         int number = input.nextInt();

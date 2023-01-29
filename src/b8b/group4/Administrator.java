@@ -15,9 +15,10 @@ public class Administrator {
     private String password;
     private String name;
     static ArrayList<Item> items;
+    private static Administrator admin = null; //Singlton
 
 //CONSREUCTOR
-    public Administrator(String userName, String password, String name) {
+    private Administrator(String userName, String password, String name) { //Singlton
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -46,5 +47,13 @@ public class Administrator {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    
+    public static Administrator getInstace(){ //Singlton
+        if (admin == null){
+             admin = new Administrator("Kh_99", "1234", "Khadegah");
+        }
+        return admin;
     }
 }

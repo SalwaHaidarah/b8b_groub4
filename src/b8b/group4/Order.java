@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Order {
     ArrayList<Item> products = new ArrayList<>();
     ArrayList<Integer> productsQuantity = new ArrayList<>();
-    private Payment payment;
 
 //CONSREUCTOR
     public Order() {
@@ -27,14 +26,6 @@ public class Order {
 
     public void setProductsQuantity(ArrayList<Integer> productsQuantity) {
         this.productsQuantity = productsQuantity;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
     }
 
 //METHODS: Add the item that customer need and the quantity of item and return the approriate message
@@ -62,8 +53,4 @@ public class Order {
         return false;
     }
 
-//METHODS: finish the order to go to payment
-    public void finish() {
-        this.payment.printInvoice(products, productsQuantity);
-    }
 }

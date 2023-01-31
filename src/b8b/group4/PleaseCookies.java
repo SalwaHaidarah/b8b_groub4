@@ -146,17 +146,18 @@ public class PleaseCookies {
                                     System.out.print("Do you want to add more items(yes or no)? ");
                                     more = input.next();
 
-                                } while (more.equalsIgnoreCase("yes"));
+                                } while (more.equalsIgnoreCase("yes"));  
                             } else if (customerInput == 2) { //FINISH ORDER
-                                finish = true;
+   
                                 printPymentMethods();
                                 System.out.print("Please enter payment method: ");
                                 int paymentMethod = input.nextInt();
+                                
                                 if (paymentMethod == 1) { //Cridet card
-
-                                    currentCustomer.getNewOrder().setPayment(new Payment("Credit Card"));
+                                    Context context = new Context(new CreditCard());
                                     boolean valid = true;
                                     do {
+                                        
                                         System.out.print("Please enter card number: ");
                                         String cardNumber = input.next();
                                         System.out.print("Please enter CVV: ");
@@ -164,25 +165,27 @@ public class PleaseCookies {
                                         System.out.print("Please enter expiry date(MM/yyyy): ");
                                         String ExpiryDate = input.next();
                                         Date cardExpiryDate = new SimpleDateFormat("MM/yyyy").parse(ExpiryDate);
-                                        valid = currentCustomer.getNewOrder().getPayment().cardInformation(cardNumber, cardCVV, cardExpiryDate);
+                                        
+                                        valid = CreditCard.cardInformation(cardNumber, cardCVV, cardExpiryDate);
                                         if (valid) {
                                             System.out.println("valid card.");
                                         } else {
                                             System.out.println("Sorry, your card information is wrong! Try again");
-
                                         }
-
                                     } while (!valid);
+                                    context.executeStrategy(currentCustomer.getNewOrder().getProducts(), currentCustomer.getNewOrder().getProductsQuantity());
+                                
                                 } else if (paymentMethod == 2) { //Cash
-                                    currentCustomer.getNewOrder().setPayment(new Payment("Cash"));
+                                    Context context = new Context(new Cash());
+                                    context.executeStrategy(currentCustomer.getNewOrder().getProducts(), currentCustomer.getNewOrder().getProductsQuantity());
                                 }
-                                System.out.print("Can you share your opinion about our cookies?(yes or no)");
+                                
+                                System.out.print("Can you share your opinion about our cookies(yes or no): ");
                                 if (input.next().equalsIgnoreCase("yes")) {
                                     System.out.print("review: ");
                                     String customerReview = input2.nextLine();
                                 }
-                                currentCustomer.getNewOrder().finish();
-                                break;
+                                break;   
                             } else if (customerInput == 3) { //SEARCH FOR AN ITEM
                                 System.out.print("Enter item name: ");
                                 String name = input.next();
@@ -263,7 +266,7 @@ public class PleaseCookies {
         System.out.println("---------------------------------------------------");
         System.out.println("                please cookies system               ");
         System.out.println("---------------------------------------------------");
-        System.out.println(" 1) Credit Card");
+        System.out.println(" 1) Credit Card(Discount 5%)");
         System.out.println(" 2) Cash");
         System.out.println("---------------------------------------------------");
     }

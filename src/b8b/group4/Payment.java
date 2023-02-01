@@ -9,7 +9,7 @@ public abstract class Payment {
     }
 
 //METHODS : Abstract method to Calculate and return the Subtotal Price(the implementation in the subclasses)
-    public abstract double CalculateSubtotalPrice(ArrayList<Item> products, ArrayList<Integer> productsQuantity);
+    public abstract double CalculateSubtotalPrice(ArrayList<Item> products);
     
 //METHODS : to Calculate the tax 
     public double CalculateTax(double price) {
@@ -17,17 +17,17 @@ public abstract class Payment {
     }
 
 //METHODS : print the invice of the customer 
-    public void printInvoice(ArrayList<Item> products, ArrayList<Integer> productsQuantity) {
+    public void printInvoice(ArrayList<Item> products) {
 
-        double subtotalPrice = CalculateSubtotalPrice(products, productsQuantity);
+        double subtotalPrice = CalculateSubtotalPrice(products);
         double tax = CalculateTax(subtotalPrice);
 
         System.out.println("---------------------------------------------------------\n"
                 + "                    PLEASE COOKIES                       \n"
                 + "---------------------------------------------------------\n"
-                + "     Item name               Price         Quantity    ");
+                + "     Item name               Price             ");
         for (int i = 0; i < products.size(); i++) {
-            System.out.println("     " + products.get(i).getItemName() + "                   " + products.get(i).getPrice() + "          " + productsQuantity.get(i));
+            System.out.println("     " + products.get(i).name() + "                   " + products.get(i).price());
         }
         System.out.println("     " + "Total price                           " + subtotalPrice + "\n"
             + "     " + "Tax                                   " + tax + "\n"

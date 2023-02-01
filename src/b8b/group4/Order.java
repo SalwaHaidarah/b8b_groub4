@@ -2,55 +2,37 @@
 package b8b.group4;
 
 import java.util.ArrayList;
+import java.util.List;
+
 public class Order {
-    ArrayList<Item> products = new ArrayList<>();
-    ArrayList<Integer> productsQuantity = new ArrayList<>();
 
-//CONSREUCTOR
-    public Order() {
+    private List<Item> items = new ArrayList<Item>();
 
+    public void addItem(Item item) {
+        items.add(item);
     }
 
-//SETTERS AND GETTERS
-    public void setProducts(ArrayList<Item> products) {
-        this.products = products;
-    }
+    public double getCost() {
+        double cost = 0.0;
 
-    public ArrayList<Item> getProducts() {
-        return products;
-    }
-
-    public ArrayList<Integer> getProductsQuantity() {
-        return productsQuantity;
-    }
-
-    public void setProductsQuantity(ArrayList<Integer> productsQuantity) {
-        this.productsQuantity = productsQuantity;
-    }
-
-//METHODS: Add the item that customer need and the quantity of item and return the approriate message
-    public String addItemToOrders(String itemName, int customerQuantity) {
-        Item item = Item.searchItem(itemName);
-        if (!(item == null)) {
-            if (itemAvailability(item, customerQuantity)) {
-                item.setQuantity(item.getQuantity() - customerQuantity);
-                products.add(item);
-                productsQuantity.add(customerQuantity);
-                return "Item added to cart successfully";
-            } else {
-                return "We have only " + item.getQuantity() + " " + item.getItemName();
-            }
-        } else {
-            return "Sorry, we do not have this product";
+        for (Item item : items) {
+            cost += item.price();
         }
+        return cost;
     }
 
-//METHODS: chick if the item of the customer is available in minu 
-    public boolean itemAvailability(Item item, int userQuantity) {
-        if ((item.getQuantity() >= userQuantity)) {
-            return true;
+    public void showItems() {
+
+        for (Item item : items) {
+            System.out.print(item.name());
+            System.out.println(", Price : " + item.price());
         }
-        return false;
+        
     }
-
+    
+    public ArrayList<Item> getProducts(){
+        
+        return (ArrayList<Item>)items;
+        
+    }
 }

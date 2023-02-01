@@ -1,16 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author asrar
- */
 package b8b.group4;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,22 +14,10 @@ public class PleaseCookies {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, ParseException {
-        //take the minu from file
-        File menu = new File("menu.txt");
-        Scanner readMenu = new Scanner(menu);
-        //read the minu
-        while (readMenu.hasNext()) {
-            String itemName = readMenu.next();
-            double itemPrice = readMenu.nextDouble();
-            int itemQuantity = readMenu.nextInt();
-            Item newItem = new Item(itemName, itemPrice, itemQuantity);
-            Item.addNewItem(newItem);
-        }
 
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
-        
-        
+
         Administrator admin = Administrator.getInstace(); //Singlton
 
         printHead(); //mine to choose if you are 1/admin or 2/customer
@@ -68,13 +46,13 @@ public class PleaseCookies {
                         double itemPrice = input.nextDouble();
                         System.out.print("Enter item quantity: ");
                         int itemQuantity = input.nextInt();
-                        Item newItem = new Item(itemName, itemPrice, itemQuantity);
-                        System.out.println(Item.addNewItem(newItem));
-                    } else if (adminInput == 2) { // DELETE ITEM.
-                        System.out.print("Enter item name to delete: ");
-                        System.out.println(Item.deleteItem(input.next()));
-                    } else if (adminInput == 3) { // show ITEMS.
-                        Item.printItems();
+//                        Item newItem = new Item(itemName, itemPrice, itemQuantity);
+//                        System.out.println(Item.addNewItem(newItem));
+//                    } else if (adminInput == 2) { // DELETE ITEM.
+//                        System.out.print("Enter item name to delete: ");
+//                        System.out.println(Item.deleteItem(input.next()));
+//                    } else if (adminInput == 3) { // show ITEMS.
+//                        Item.printItems();
                     }
                 }
             } else {
@@ -122,42 +100,58 @@ public class PleaseCookies {
                         System.out.println("---------------------------------------------------");
 
                         int customerInput = 0;
-                        while (customerInput != 5) {
+                        OrderBuilder order1 = new OrderBuilder();
+                        while (customerInput != 4) {
                             printCustomerHeader();
                             customerInput = input.nextInt();
+                            if (customerInput == 1) { //Build order
+                                customerInput = 0;
+                                System.out.println("---------------------------------------------------");
+                                System.out.println("                please cookies system              ");
+                                System.out.println("---------------------------------------------------");
 
-                            if (customerInput == 1) { //ADD ITEMS
+                                while (customerInput != 5) {
+                                    System.out.println("choose your order:");
+                                    System.out.println(" 1) Cup cookies");
+                                    System.out.println(" 2) Stuffed cookies");
+                                    System.out.println(" 3) Tart cookies");
+                                    System.out.println(" 4) Regular cookies");
+                                    System.out.println(" 5) Done");
+                                    System.out.println("-----------------------------------------------");
+                                    customerInput = input.nextInt();
 
-                                Item.printItems();
-                                if (finish) {
-                                    currentCustomer.addOrder();
-                                    finish = false;
+                                    switch (customerInput) {
+
+                                        case 1:
+                                            order1.a();
+                                            System.out.println("Item added successfully");
+                                            break;
+                                        case 2:
+                                            order1.b();
+                                            System.out.println("Item added successfully");
+                                            break;
+                                        case 3:
+                                            order1.c();
+                                            System.out.println("Item added successfully");
+                                            break;
+                                        case 4:
+                                            order1.d();
+                                            System.out.println("Item added successfully");
+                                            break;
+                                    }
                                 }
-                                String more = "yes";
 
-                                do {
-
-                                    System.out.print("Enter item name: ");
-                                    String name = input.next();
-                                    System.out.print("Enter item quantity: ");
-                                    int quantity = input.nextInt();
-
-                                    System.out.println(currentCustomer.getNewOrder().addItemToOrders(name, quantity));
-                                    System.out.print("Do you want to add more items(yes or no)? ");
-                                    more = input.next();
-
-                                } while (more.equalsIgnoreCase("yes"));  
                             } else if (customerInput == 2) { //FINISH ORDER
-   
+                                currentCustomer.setNewOrder(order1.order);
                                 printPymentMethods();
                                 System.out.print("Please enter payment method: ");
                                 int paymentMethod = input.nextInt();
-                                
+
                                 if (paymentMethod == 1) { //Cridet card
                                     Context context = new Context(new CreditCard());
                                     boolean valid = true;
                                     do {
-                                        
+
                                         System.out.print("Please enter card number: ");
                                         String cardNumber = input.next();
                                         System.out.print("Please enter CVV: ");
@@ -165,7 +159,7 @@ public class PleaseCookies {
                                         System.out.print("Please enter expiry date(MM/yyyy): ");
                                         String ExpiryDate = input.next();
                                         Date cardExpiryDate = new SimpleDateFormat("MM/yyyy").parse(ExpiryDate);
-                                        
+
                                         valid = CreditCard.cardInformation(cardNumber, cardCVV, cardExpiryDate);
                                         if (valid) {
                                             System.out.println("valid card.");
@@ -173,37 +167,24 @@ public class PleaseCookies {
                                             System.out.println("Sorry, your card information is wrong! Try again");
                                         }
                                     } while (!valid);
-                                    context.executeStrategy(currentCustomer.getNewOrder().getProducts(), currentCustomer.getNewOrder().getProductsQuantity());
-                                
+                                    context.executeStrategy(currentCustomer.getNewOrder().getProducts());
+
                                 } else if (paymentMethod == 2) { //Cash
                                     Context context = new Context(new Cash());
-                                    context.executeStrategy(currentCustomer.getNewOrder().getProducts(), currentCustomer.getNewOrder().getProductsQuantity());
+                                    context.executeStrategy(currentCustomer.getNewOrder().getProducts());
                                 }
-                                
+
                                 System.out.print("Can you share your opinion about our cookies(yes or no): ");
                                 if (input.next().equalsIgnoreCase("yes")) {
                                     System.out.print("review: ");
                                     String customerReview = input2.nextLine();
                                 }
-                                break;   
-                            } else if (customerInput == 3) { //SEARCH FOR AN ITEM
-                                System.out.print("Enter item name: ");
-                                String name = input.next();
-                                Item wantedItem = Item.searchItem(name);
-                                if (wantedItem == null) {
-                                    System.out.println("Sorry, we do not have this product");
-                                } else {
-                                    System.out.println("We have " + wantedItem.getQuantity() + " " + wantedItem.getItemName() + " in stock. " + wantedItem.getPrice() + " SAR for each piece.");
-                                    System.out.print("Do you want to add this item to cart(yes or no)? ");
-                                    String wantToAdd = input.next();
-                                    if (wantToAdd.equalsIgnoreCase("yes")) {
-                                        System.out.print("Enter item quantity: ");
-                                        int quantity = input.nextInt();
-                                        currentCustomer.getNewOrder().addItemToOrders(wantedItem.getItemName(), quantity);
-                                    }
-                                }
-                            } else if (customerInput == 4) { //SHOW CART
-                                System.out.println(currentCustomer.showCart());
+                                break;
+
+                            } else if (customerInput == 3) { //SHOW CART
+                                System.out.println("                Your Cart                ");
+                                order1.order.showItems();
+
                             }
                         }
                         break;
@@ -255,9 +236,8 @@ public class PleaseCookies {
         System.out.println("---------------------------------------------------");
         System.out.println(" 1) Add item.");
         System.out.println(" 2) Finish order.");
-        System.out.println(" 3) Search for an item.");
-        System.out.println(" 4) Show cart.");
-        System.out.println(" 5) Exit.");
+        System.out.println(" 3) Show cart.");
+        System.out.println(" 4) Exit.");
         System.out.println("---------------------------------------------------");
         System.out.print(">> ");
     }
@@ -270,6 +250,4 @@ public class PleaseCookies {
         System.out.println(" 2) Cash");
         System.out.println("---------------------------------------------------");
     }
- }
-    
-
+}

@@ -75,26 +75,6 @@ public class Customer {
         this.newOrder = newOrder;
     }
 
-// METHODS:add new order for this customer and return message
-    public String addOrder() {
-        this.newOrder = new Order();
-        return "order added successfully";
-    }
-
-//METHODS:to show the customer order and return String contain ALL ITEMS .
-    public String showCart() {
-        String cartItems = "";
-        if (newOrder != null) {
-            cartItems += "Number of added items: " + newOrder.getProducts().size() + "\n";
-            for (int i = 0; i < newOrder.getProducts().size(); i++) {
-                cartItems += newOrder.getProducts().get(i).getItemName() + " || " + newOrder.getProducts().get(i).getPrice() + " || " + newOrder.getProductsQuantity().get(i) + "\n";
-            }
-            cartItems += "_______________________________\n";
-        } else {
-            cartItems = "your cart is empty! You can add item by chose 1.";
-        }
-        return cartItems;
-    }
 //METHODS: search to the customer by user name and password and chick if the customer regestir or not
 
     public static Customer searchCustomer(String username, String password) {

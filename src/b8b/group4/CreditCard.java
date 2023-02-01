@@ -56,13 +56,12 @@ public class CreditCard extends Payment{
     
     //METHODS : to Calculate and return the Subtotal Price
     @Override
-    public double CalculateSubtotalPrice(ArrayList<Item> products, ArrayList<Integer> productsQuantity) {
-        double subtotalPrice = 0;
-        for (int i = 0; i < products.size(); i++) {
-            double price = products.get(i).getPrice() * productsQuantity.get(i);
-            subtotalPrice += price;
+  public double CalculateSubtotalPrice(ArrayList<Item> products) {
+        double subtotalPrice = 0.0;
+
+        for (Item item : products) {
+            subtotalPrice += item.price();
         }
-        subtotalPrice = subtotalPrice - (subtotalPrice * (discount/100));
         return subtotalPrice;
     }
 }

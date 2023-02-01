@@ -14,7 +14,7 @@ public class Context {
         this.payment = payment;
     }
 
-    public void executeStrategy(ArrayList<Item> products, ArrayList<Integer> productsQuantity) {
-        payment.printInvoice(products, productsQuantity);
+    public void executeStrategy(ArrayList<Item> products) {
+        payment.printInvoice(products);
     }
 }

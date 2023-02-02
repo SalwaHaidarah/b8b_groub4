@@ -1,4 +1,3 @@
-
 package b8b.group4;
 
 import java.io.FileNotFoundException;
@@ -46,13 +45,13 @@ public class PleaseCookies {
                         double itemPrice = input.nextDouble();
                         System.out.print("Enter item quantity: ");
                         int itemQuantity = input.nextInt();
-//                        Item newItem = new Item(itemName, itemPrice, itemQuantity);
-//                        System.out.println(Item.addNewItem(newItem));
-//                    } else if (adminInput == 2) { // DELETE ITEM.
-//                        System.out.print("Enter item name to delete: ");
-//                        System.out.println(Item.deleteItem(input.next()));
-//                    } else if (adminInput == 3) { // show ITEMS.
-//                        Item.printItems();
+                        //          Item newItem = new Item(itemName, itemPrice, itemQuantity);
+                        //            System.out.println(Item.addNewItem(newItem));
+                        //            } else if (adminInput == 2) { // DELETE ITEM.
+                        //               System.out.print("Enter item name to delete: ");
+                        //               System.out.println(Item.deleteItem(input.next()));
+                        //             } else if (adminInput == 3) { // show ITEMS.
+                        //                   Item.printItems();
                     }
                 }
             } else {
@@ -119,25 +118,55 @@ public class PleaseCookies {
                                     System.out.println(" 5) Done");
                                     System.out.println("-----------------------------------------------");
                                     customerInput = input.nextInt();
+                                    if (customerInput == 5) {
+                                        break;
+                                    }
+                                    System.out.println("Would you like to add sprinkles to your cookies?(yes or no)");
+                                    String sprinkles = input.next(); // Decorate Order
+                                    if (sprinkles.equalsIgnoreCase("no")) {
 
-                                    switch (customerInput) {
+                                        switch (customerInput) {
 
-                                        case 1:
-                                            order1.a();
-                                            System.out.println("Item added successfully");
-                                            break;
-                                        case 2:
-                                            order1.b();
-                                            System.out.println("Item added successfully");
-                                            break;
-                                        case 3:
-                                            order1.c();
-                                            System.out.println("Item added successfully");
-                                            break;
-                                        case 4:
-                                            order1.d();
-                                            System.out.println("Item added successfully");
-                                            break;
+                                            case 1:
+
+                                                order1.a();
+                                                System.out.println("Item added successfully");
+                                                break;
+                                            case 2:
+                                                order1.b();
+                                                System.out.println("Item added successfully");
+                                                break;
+                                            case 3:
+                                                order1.c();
+                                                System.out.println("Item added successfully");
+                                                break;
+                                            case 4:
+                                                order1.d();
+                                                System.out.println("Item added successfully");
+                                                break;
+                                        }
+                                    } else if (sprinkles.equalsIgnoreCase("yes")) {
+                                        switch (customerInput) {
+
+                                            case 1:
+
+                                                order1.CookieOrders(new WithSprinkles(new Cup_cookies()));
+                                                System.out.println("Item added successfully");
+                                                break;
+                                            case 2:
+                                                order1.CookieOrders(new WithSprinkles(new Stuffed_cookies()));
+                                                System.out.println("Item added successfully");
+                                                break;
+                                            case 3:
+                                                order1.CookieOrders(new WithSprinkles(new Tart_cookies()));
+                                                System.out.println("Item added successfully");
+                                                break;
+                                            case 4:
+                                                order1.CookieOrders(new WithSprinkles(new Regular_cookies()));
+                                                System.out.println("Item added successfully");
+                                                break;
+
+                                        }
                                     }
                                 }
 

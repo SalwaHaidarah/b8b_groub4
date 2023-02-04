@@ -1,8 +1,13 @@
 package b8b.group4;
 
 public class OrderBuilder {
-    
+
     Order order = new Order();
+
+    public Order CookieOrders(Cookies type) {
+        order.addItem(type);
+        return order;
+    }
 
     public Order addCupCookies() {
         order.addItem(new Cup_cookies());

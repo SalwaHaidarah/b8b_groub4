@@ -6,13 +6,17 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.Date;
 import static b8b.group4.Customer.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 
 public class PleaseCookies {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException, ParseException {
+    public static void main(String[] args) throws FileNotFoundException, ParseException, InterruptedException {
 
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
@@ -24,9 +28,14 @@ public class PleaseCookies {
 
         //choose1 --> Admin
         //---------------------------------------------------------------------------------------
+        Login gui = new Login();
+        gui.setVisible(true);
+        
+        
         if (number == 1) {
 
             System.out.print("Enter username: ");//should be Kh_99
+            
             String name = input.next();
             System.out.print("Enter password: ");//should be 1234
             String Password = input.next();
@@ -34,30 +43,24 @@ public class PleaseCookies {
             //chick if the username and pass correct -->admin
             if (name.equals(admin.getUserName()) && (Password.endsWith(admin.getPassword()))) {
                 int adminInput = 0;
-                while (adminInput != 4) {
+                while (adminInput != 2) {
                     printAdminHeader();//show the services to the admin
                     adminInput = input.nextInt();
-
-                    if (adminInput == 1) { // ADD ITEM.
-                        System.out.print("Enter item name: ");
-                        String itemName = input.next();
-                        System.out.print("Enter item price: ");
-                        double itemPrice = input.nextDouble();
-                        System.out.print("Enter item quantity: ");
-                        int itemQuantity = input.nextInt();
-                        //          Item newItem = new Item(itemName, itemPrice, itemQuantity);
-                        //            System.out.println(Item.addNewItem(newItem));
-                        //            } else if (adminInput == 2) { // DELETE ITEM.
-                        //               System.out.print("Enter item name to delete: ");
-                        //               System.out.println(Item.deleteItem(input.next()));
-                        //             } else if (adminInput == 3) { // show ITEMS.
-                        //                   Item.printItems();
+                    if (adminInput == 1) {
+                        OrderBuilder report = new OrderBuilder();
+                        report.addCupCookies();
+                        report.addRegCookies();
+                        report.addStuffedCookies();
+                        report.addTartCookies();
+                        System.out.println("                Daily Report                ");
+                        System.out.println("");
+                        report.order.showItems();
+                        System.out.println("");
                     }
                 }
             } else {
                 System.out.println("Wrong user name or password");
             }
-
             //choose2 --> Customer
             //---------------------------------------------------------------------------------------
         } else if (number == 2) {
@@ -250,9 +253,7 @@ public class PleaseCookies {
         System.out.println("---------------------------------------------------");
         System.out.println("                please cookies system               ");
         System.out.println("---------------------------------------------------");
-        System.out.println(" 1) Add new item.");
-        System.out.println(" 2) Delete item.");
-        System.out.println(" 3) show items.");
+        System.out.println(" 1) Print Rebort");
         System.out.println(" 4) Exit.");
         System.out.println("---------------------------------------------------");
         System.out.print(">> ");

@@ -4,22 +4,22 @@ public class OrderBuilder {
     
     Order order = new Order();
 
-    public Order a() {
+    public Order addCupCookies() {
         order.addItem(new Cup_cookies());
         return order;
     }
 
-    public Order b() {
+    public Order addStuffedCookies() {
         order.addItem(new Stuffed_cookies());
         return order;
     }
 
-    public Order c() {
+    public Order addTartCookies() {
         order.addItem(new Tart_cookies());
         return order;
     }
 
-    public Order d() {
+    public Order addRegCookies() {
         order.addItem(new Regular_cookies());
         return order;
     }

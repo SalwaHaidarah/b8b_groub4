@@ -129,19 +129,19 @@ public class PleaseCookies {
 
                                             case 1:
 
-                                                order1.a();
+                                                order1.addCupCookies();
                                                 System.out.println("Item added successfully");
                                                 break;
                                             case 2:
-                                                order1.b();
+                                                order1.addStuffedCookies();
                                                 System.out.println("Item added successfully");
                                                 break;
                                             case 3:
-                                                order1.c();
+                                                order1.addTartCookies();
                                                 System.out.println("Item added successfully");
                                                 break;
                                             case 4:
-                                                order1.d();
+                                                order1.addRegCookies();
                                                 System.out.println("Item added successfully");
                                                 break;
                                         }

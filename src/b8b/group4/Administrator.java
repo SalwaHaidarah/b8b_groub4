@@ -1,15 +1,8 @@
 package b8b.group4;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 import java.util.ArrayList;
-/**
- *
- * @author asrar
- */
+
 public class Administrator {
     private String userName;
     private String password;

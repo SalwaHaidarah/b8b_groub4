@@ -32,36 +32,7 @@ public class PleaseCookies {
         gui.setVisible(true);
         
         
-      /*  if (number == 1) {
-
-            System.out.print("Enter username: ");//should be Kh_99
-            String username = gui.username.getText();
-            String name = input.next();
-            System.out.print("Enter password: ");//should be 1234
-            String pass = gui.pass.getPassword().toString();
-            String Password = input.next();
-
-            //chick if the username and pass correct -->admin
-            if (name.equals(admin.getUserName()) && (Password.endsWith(admin.getPassword()))) {
-                int adminInput = 0;
-                while (adminInput != 2) {
-                    printAdminHeader();//show the services to the admin
-                    adminInput = input.nextInt();
-                    if (adminInput == 1) {
-                        OrderBuilder report = new OrderBuilder();
-                        report.addCupCookies();
-                        report.addRegCookies();
-                        report.addStuffedCookies();
-                        report.addTartCookies();
-                        System.out.println("                Daily Report                ");
-                        System.out.println("");
-                        report.order.showItems();
-                        System.out.println("");
-                    }
-                }
-            } else {
-                System.out.println("Wrong user name or password");
-            }*/
+      //  if (number == 1) >>> code in Login gui..
             //choose2 --> Customer
             //---------------------------------------------------------------------------------------
        if (number == 2) {

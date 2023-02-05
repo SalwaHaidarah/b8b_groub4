@@ -1,6 +1,7 @@
 package b8b.group4;
 
 import static b8b.group4.PleaseCookies.printAdminHeader;
+import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -163,15 +164,15 @@ public boolean running = false;
        String    username2 = username.getText();
          String     password2 = pasword.getText();
            Administrator admin = Administrator.getInstace(); //Singlton
-             System.out.println(username2);
-              System.out.println(password2);
+             
             //chick if the username and pass correct -->admin
             if (username2.equals(admin.getUserName()) && (password2.endsWith(admin.getPassword()))) {
-//                int adminInput = 0;
-//                while (adminInput != 2) {
-//                    printAdminHeader();//show the services to the admin
-//                    adminInput = input.nextInt();
-//                    if (adminInput == 1) {
+                int adminInput = 0;
+                while (adminInput != 2) {
+                    printAdminHeader();//show the services to the admin
+                    Scanner input = new Scanner(System.in);
+                    adminInput = input.nextInt();
+                    if (adminInput == 1) {
                         OrderBuilder report = new OrderBuilder();
                         report.addCupCookies();
                         report.addRegCookies();
@@ -184,8 +185,13 @@ public boolean running = false;
 //                    }
 //                }
             } 
+                    if (adminInput == 2){
+                        System.exit(0);
+                    }
         else {
                 System.out.println("Wrong user name or password");
+                    }
+                }
             }
     }//GEN-LAST:event_loginActionPerformed
 
@@ -238,7 +244,7 @@ public boolean running = false;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton login;
-    public javax.swing.JTextField pasword;
+    private javax.swing.JTextField pasword;
     public javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -255,7 +255,7 @@ public class PleaseCookies {
         System.out.println("                please cookies system               ");
         System.out.println("---------------------------------------------------");
         System.out.println(" 1) Print Rebort");
-        System.out.println(" 4) Exit.");
+        System.out.println(" 2) Exit.");
         System.out.println("---------------------------------------------------");
         System.out.print(">> ");
 

@@ -15,7 +15,5 @@ public class WithSprinkles extends CookiesDecorator{
     @Override
     public String name(){
         return super.name()+" with sprinkles";
-    }
-    
-    
+    }  
 }

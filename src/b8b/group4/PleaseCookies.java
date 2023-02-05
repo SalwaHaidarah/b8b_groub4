@@ -32,12 +32,13 @@ public class PleaseCookies {
         gui.setVisible(true);
         
         
-        if (number == 1) {
+      /*  if (number == 1) {
 
             System.out.print("Enter username: ");//should be Kh_99
-            
+            String username = gui.username.getText();
             String name = input.next();
             System.out.print("Enter password: ");//should be 1234
+            String pass = gui.pass.getPassword().toString();
             String Password = input.next();
 
             //chick if the username and pass correct -->admin
@@ -60,10 +61,10 @@ public class PleaseCookies {
                 }
             } else {
                 System.out.println("Wrong user name or password");
-            }
+            }*/
             //choose2 --> Customer
             //---------------------------------------------------------------------------------------
-        } else if (number == 2) {
+       if (number == 2) {
             boolean finish = true;
             int coustomeOption = 0;
             while (coustomeOption != 3) {

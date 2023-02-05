@@ -1,5 +1,7 @@
 package b8b.group4;
 
+import static b8b.group4.PleaseCookies.printAdminHeader;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,10 +35,10 @@ public boolean running = false;
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        javax.swing.JTextField username = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
+        username = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         Create_Account = new javax.swing.JButton();
+        pasword = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -84,6 +86,12 @@ public boolean running = false;
             }
         });
 
+        pasword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,7 +99,7 @@ public boolean running = false;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(Create_Account)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addComponent(login)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -101,12 +109,11 @@ public boolean running = false;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pasword, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,9 +126,9 @@ public boolean running = false;
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addGap(7, 7, 7)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pasword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(login)
                     .addComponent(Create_Account))
@@ -153,10 +160,38 @@ public boolean running = false;
     }//GEN-LAST:event_usernameActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        menu menu = new menu();
-        menu.setVisible(true);
-        this.setVisible(false);
+       String    username2 = username.getText();
+         String     password2 = pasword.getText();
+           Administrator admin = Administrator.getInstace(); //Singlton
+             System.out.println(username2);
+              System.out.println(password2);
+            //chick if the username and pass correct -->admin
+            if (username2.equals(admin.getUserName()) && (password2.endsWith(admin.getPassword()))) {
+//                int adminInput = 0;
+//                while (adminInput != 2) {
+//                    printAdminHeader();//show the services to the admin
+//                    adminInput = input.nextInt();
+//                    if (adminInput == 1) {
+                        OrderBuilder report = new OrderBuilder();
+                        report.addCupCookies();
+                        report.addRegCookies();
+                        report.addStuffedCookies();
+                        report.addTartCookies();
+                        System.out.println("                Daily Report                ");
+                        System.out.println("");
+                        report.order.showItems();
+                        System.out.println("");
+//                    }
+//                }
+            } 
+        else {
+                System.out.println("Wrong user name or password");
+            }
     }//GEN-LAST:event_loginActionPerformed
+
+    private void paswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,6 +238,7 @@ public boolean running = false;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton login;
-    private javax.swing.JPasswordField password;
+    public javax.swing.JTextField pasword;
+    public javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

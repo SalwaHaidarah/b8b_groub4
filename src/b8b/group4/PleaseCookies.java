@@ -277,7 +277,7 @@ public class PleaseCookies {
         System.out.println("---------------------------------------------------");
         System.out.println("                please cookies system               ");
         System.out.println("---------------------------------------------------");
-        System.out.println(" 1) Credit Card(Discount 5%)");
+        System.out.println(" 1) Credit Card(Discount 10%)");
         System.out.println(" 2) Cash");
         System.out.println("---------------------------------------------------");
     }

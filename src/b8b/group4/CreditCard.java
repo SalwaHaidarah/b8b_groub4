@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Seren
  */
 public class CreditCard extends Payment{
-    private double discount = 5;
+    private double discount = 10;
     
     public CreditCard() {
     }
@@ -62,6 +62,7 @@ public class CreditCard extends Payment{
         for (Item item : products) {
             subtotalPrice += item.price();
         }
+        subtotalPrice = subtotalPrice - (subtotalPrice*(discount/100));
         return subtotalPrice;
     }
 }
